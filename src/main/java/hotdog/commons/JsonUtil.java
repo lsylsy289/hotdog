@@ -1,4 +1,4 @@
-package egovframework.example.cmmn;
+package hotdog.commons;
 
 import java.util.ArrayList;
 import java.util.HashMap;
