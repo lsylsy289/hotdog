@@ -49,11 +49,11 @@
 	-->
 
 	<!-- widget grid -->
-	<section id="widget-grid" class="">
+	<section id="" class="">
 
 		<!-- row -->
 		<div class="row">
-
+			<span><button id="btnSearch" class="btn btn-primary" onclick="javascript:jqGrid.goSearch();">조회</button></span> 
 			<!-- NEW WIDGET START -->
 			<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
@@ -83,6 +83,7 @@ $(document).ready(function() {
 	pageSetUp();
 	
 	jqGrid.init();
+	jqGrid.goSearch();
 });
 
 $(window).on('resize.jqGrid', function() {
@@ -93,191 +94,31 @@ var jqGrid = {
 		
 		init: function () {
 			
-			var jqgrid_data = [{
-				id : "1",
-				date : "2007-10-01",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "2",
-				date : "2007-10-02",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "3",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "4",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "5",
-				date : "2007-10-05",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "6",
-				date : "2007-09-06",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "7",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "8",
-				date : "2007-10-03",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "9",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "10",
-				date : "2007-10-01",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "11",
-				date : "2007-10-02",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "12",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "13",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "14",
-				date : "2007-10-05",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "15",
-				date : "2007-09-06",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "16",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "17",
-				date : "2007-10-03",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "18",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}];
-			
 			jQuery("#jqgrid").jqGrid({
-				data : jqgrid_data,
+				url: "jqgridStartMain.do",
 				datatype : "local",
 				height : 'auto',
-				colNames : ['Actions', 'Inv No', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
+				colNames : ['Client', 'Amount', 'Tax', 'Total', 'Notes'],
 				colModel : [{
-					name : 'act',
-					index : 'act',
-					sortable : false
-				}, {
-					name : 'id',
-					index : 'id'
-				}, {
-					name : 'date',
-					index : 'date',
-					editable : true
+					name : 'seq',
+					index : 'seq'
 				}, {
 					name : 'name',
 					index : 'name',
 					editable : true
 				}, {
-					name : 'amount',
-					index : 'amount',
+					name : 'phone',
+					index : 'phone',
+					editable : true
+				}, {
+					name : 'address',
+					index : 'address',
 					align : "right",
 					editable : true
 				}, {
-					name : 'tax',
-					index : 'tax',
+					name : 'etcc',
+					index : 'etcc',
 					align : "right",
-					editable : true
-				}, {
-					name : 'total',
-					index : 'total',
-					align : "right",
-					editable : true
-				}, {
-					name : 'note',
-					index : 'note',
-					sortable : false,
 					editable : true
 				}],
 				rowNum : 10,
@@ -358,7 +199,30 @@ var jqGrid = {
 
 			$(".ui-icon.ui-icon-seek-end").wrap("<div class='btn btn-sm btn-default'></div>");
 			$(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
-		}
+		},
+		
+		goSearch : function () {
+		
+			$("#jqgrid").setGridParam({
+		         
+		           datatype : "json",
+		           postData : { param: JSON.stringify({serviceImplYn: $("#selectId").val()})},
+		           loadComplete: function (data){
+
+		        	   $.each(data, function (key, value) { 
+
+			              if (key == "rows") {   
+			                 
+			           	      if (value < 1) {    
+			                      alert("데이터가 없습니다.");
+			                      
+			                      
+			                  }
+			              }
+		              });
+		           }
+		       }).trigger("reloadGrid");
+		   }
 }	
 
 /******************************************
@@ -368,7 +232,7 @@ var gridFunc =
 {   
 	addRow: function () {
 	   
-	   var $jqGridVar = $("#jqGrid");
+	   var $jqGridVar = $("#jqgrid");
 	   var totCnt = $jqGridVar.getGridParam("records");
 	   var addData = { seq: "", name: "", phone: "", address: "", etcc: "", gender: "1" };
 	
@@ -384,12 +248,12 @@ var gridFunc =
 	delRow: function (rowId) {
 	
 	   if ( !CommonJsUtil.isEmpty(rowId) ) {
-	      $("#jqGrid").delRowData(rowId);
+	      $("#jqgrid").delRowData(rowId);
 	   }
 	},
 	
 	clearGrid: function () {
-	    $("#jqGrid").clearGridData();
+	    $("#jqgrid").clearGridData();
 	},
 	
 	saveData: function () {
@@ -439,7 +303,7 @@ var gridFunc =
 	selectData: function (gubun) {
 		
 		var gubunText = gubun === 'save' ? '저장' : '삭제';
-		var checkData = $("#jqGrid").getGridParam("selarrrow");
+		var checkData = $("#jqgrid").getGridParam("selarrrow");
 		
 		if ( checkData.length === 0 ) {
 			
@@ -452,7 +316,7 @@ var gridFunc =
 			
 			for (var i = 0; i < checkData.length; i++) {
 				
-				var data = $("#jqGrid").getCell(checkData[i], "gender");
+				var data = $("#jqgrid").getCell(checkData[i], "gender");
 				
 				if (data == "2") {
 					alert("여성의 데이터는 선택할 수 없습니다.");
@@ -472,7 +336,7 @@ var gridFunc =
 			var editType = "";
 			var jsonObj = {};
 			
-			var seq = $("#jqGrid").getCell(checkData[i], "seq");
+			var seq = $("#jqgrid").getCell(checkData[i], "seq");
 			
 			if ( gubun === "save" ) {
 				
@@ -487,11 +351,11 @@ var gridFunc =
 			jsonObj.editType = editType;
 			jsonObj.seq = seq;
 			
-			jsonObj.name = $("#jqGrid").getCell(checkData[i], "name");
-			jsonObj.phone = $("#jqGrid").getCell(checkData[i], "phone");
-			jsonObj.address = $("#jqGrid").getCell(checkData[i], "address");
-			jsonObj.etcc = $("#jqGrid").getCell(checkData[i], "etcc");
-			jsonObj.gender = $("#jqGrid").getCell(checkData[i], "gender");
+			jsonObj.name = $("#jqgrid").getCell(checkData[i], "name");
+			jsonObj.phone = $("#jqgrid").getCell(checkData[i], "phone");
+			jsonObj.address = $("#jqgrid").getCell(checkData[i], "address");
+			jsonObj.etcc = $("#jqgrid").getCell(checkData[i], "etcc");
+			jsonObj.gender = $("#jqgrid").getCell(checkData[i], "gender");
 			
 			jsonArray1[iCnt++] =jsonObj;
 		}
@@ -501,7 +365,7 @@ var gridFunc =
 	
 	gridValid: function () {
 		
-		var trObj = $("#jqGrid").find("tr");
+		var trObj = $("#jqgrid").find("tr");
 		
 		for (var i = 0; i < trObj.length; i++) {
 			
@@ -510,7 +374,7 @@ var gridFunc =
 			if($this.hasClass("edited")) {
 				
 			    var rowId = $this.prop("id");
-			    var phone = $("#jqGrid").getCell(rowId, "phone");
+			    var phone = $("#jqgrid").getCell(rowId, "phone");
 			    
 			    if (!CommonJsUtil.isNumeric(phone)) {
 			         

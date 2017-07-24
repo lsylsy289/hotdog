@@ -75,7 +75,7 @@
 					<a href="table.html">Normal Tables</a>
 				</li>
 				<li>
-					<a href="datatables.html">Data Tables <span class="badge inbox-badge bg-color-greenLight hidden-mobile">responsive</span></a>
+					<a href="dataTables.do">Data Tables <span class="badge inbox-badge bg-color-greenLight hidden-mobile">responsive</span></a>
 				</li>
 				<li class="active">
 					<a href="jqgrid.html">Jquery Grid</a>

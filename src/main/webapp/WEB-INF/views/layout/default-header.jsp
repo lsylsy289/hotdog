@@ -117,6 +117,12 @@ Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Ref
 
 <script src="js/plugin/jqgrid/jquery.jqGrid.min.js"></script>
 <script src="js/plugin/jqgrid/grid.locale-en.min.js"></script>
-<!-- <script src="js/plugin/jqgrid/grid.locale-kr.js"></script> -->
+<script src="js/plugin/jqgrid/grid.locale-kr.js"></script>
+
+<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>
+<script src="js/plugin/datatables/dataTables.tableTools.min.js"></script>
+<script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
 
 <title> SmartAdmin </title>

@@ -13,6 +13,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
     
+    <mvc:annotation-driven /><!-- @ResponseBody, @ResponseStatus, @ModelAttribute, ... 작성용 -->
+    
     <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
   		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
   		<property name="order" value="1" />
