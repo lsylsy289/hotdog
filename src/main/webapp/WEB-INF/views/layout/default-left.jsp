@@ -7,12 +7,6 @@
 <!-- end user info -->
 
 <nav>
-	<!-- 
-	NOTE: Notice the gaps after each icon usage <i></i>..
-	Please note that these links work a bit different than
-	traditional href="" links. See documentation for details.
-	-->
-
 	<ul>
 		<li class="top-menu-invisible">
 			<a href="#"><i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent">회원관리</span></a>
