@@ -47,6 +47,8 @@ $(document).ready(function () {
 
 	var resultCode = '${requestScope.resultCode}';
 	
+	alert(resultCode);
+	
 	if ( _.isEqual("NOT_EXIST", resultCode) ) {
 		
 		alert("아이디가 존재하지 않습니다.");

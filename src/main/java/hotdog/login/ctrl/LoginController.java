@@ -43,18 +43,18 @@ public class LoginController {
 				
 				logger.info("로그인성공!!!");
 				
-				return "redirect:" + MAIN_URL;
+				return "forward:" + MAIN_URL;
 			} else {
 				
 				model.addAttribute("resultCode", "LOGIN_FAIL");
 				
-				return "redirect:" + LOGIN_URL;
+				return "forward:" + LOGIN_URL;
 			}
 		} catch (Exception e) {
 			
 			model.addAttribute("resultCode", "NOT_EXIST");
 			
-			return "redirect:" + LOGIN_URL;
+			return "forward:" + LOGIN_URL;
 		}
 	}
 }

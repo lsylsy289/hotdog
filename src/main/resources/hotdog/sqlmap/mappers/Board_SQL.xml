@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotdog.board.dao.BoardDao">
+	<select id="selectBoardList" resultType="egovMap">
+		SELECT /* (BoardDao.selectBoardList) */
+				A1.BOARD_SEQ,
+				A1.TITLE,
+				A1.VIEW_CNT,
+				A1.RGST_DATE,
+				COALESCE(B1.USER_NAME, '관리자')
+								AS RGST_USER_NAME
+		FROM	BOARD			A1
+		LEFT OUTER JOIN
+				USER_MNG		B1
+				ON  B1.USER_ID  =  A1.RGST_USER_ID
+		WHERE	A1.DELT_YN		= 'N'
+		ORDER BY
+				A1.RGST_DATE	DESC
+	</select>
+	
+	<select id="selectBoardDetail" parameterType="string" resultType="egovMap">
+		SELECT /* (BoardDao.selectBoardDetail) */
+				A1.BOARD_SEQ,
+				A1.TITLE,
+				A1.CONTENT,
+				A1.VIEW_CNT,
+				A1.RGST_DATE,
+				COALESCE(B1.USER_NAME, '관리자')
+								AS RGST_USER_NAME
+		FROM	BOARD			A1
+		LEFT OUTER JOIN
+				USER_MNG		B1
+				ON  B1.USER_ID  =  A1.RGST_USER_ID
+		WHERE	A1.BOARD_SEQ	=  #{boardSeq}
+	</select>
+	
+	<insert id="saveBoard">
+		<selectKey keyProperty="boardSeq" resultType="string" order="BEFORE">
+			SELECT COALESCE(MAX(BOARD_SEQ), '0') + 1 FROM BOARD
+		</selectKey>
+		INSERT 	INTO 
+				BOARD
+		VALUES
+		(
+				#{boardSeq},
+				#{title},
+				#{content},
+				0,
+				'ATTACH_ID',
+				SYSDATE,
+				#{rgstUserId},
+				NULL,
+				NULL,
+				'N'
+		)
+	</insert>
+	
+	<update id="updateViewCnt" parameterType="string">
+		UPDATE 	BOARD SET
+		VIEW_CNT = VIEW_CNT + 1 
+		WHERE	BOARD_SEQ = #{boardSeq}
+	</update>
+	
+	<update id="deleteBoard" parameterType="string">
+		UPDATE 	BOARD SET
+		DELT_YN = 'Y'
+		WHERE	BOARD_SEQ = #{boardSeq}
+	</update>
+</mapper>

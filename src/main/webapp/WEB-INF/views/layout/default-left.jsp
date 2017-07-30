@@ -16,13 +16,21 @@
 				</li>
 			</ul>
 		</li>
-		<li class="active">
+		<li>
+			<a href="#"><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">커뮤니티</span></a>
+			<ul>
+				<li>
+					<a href="/board/boardList.do"><i class="fa fa-lg fa-fw fa-picture-o"></i>게시판</a>
+				</li>
+			</ul>
+		</li>
+		<li>
 			<a href="#"><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Tables</span></a>
 			<ul>
 				<li>
 					<a href="dataTables.do">Data Tables <span class="badge inbox-badge bg-color-greenLight hidden-mobile">responsive</span></a>
 				</li>
-				<li class="active">
+				<li>
 					<a href="jqgrid.html">Jquery Grid</a>
 				</li>
 			</ul>
