@@ -49,6 +49,7 @@ Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Ref
 <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<Script type="text/javascript" src="/js/underscore.js"></Script>
 
 <!-- IMPORTANT: APP CONFIG -->
 <script src="/js/app.config.js"></script>

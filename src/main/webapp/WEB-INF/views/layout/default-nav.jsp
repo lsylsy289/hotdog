@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <div id="logo-group">
 
 	<!-- PLACE YOUR LOGO HERE -->
-	<span id="logo"> <img src="/img/logo.png" alt="SmartAdmin"> </span>
+	<span id="logo"><a href="/main.do"><img src="/img/logo.png" alt="SmartAdmin"></a></span>
 	<!-- END LOGO PLACEHOLDER -->
 </div>
 
@@ -11,8 +12,12 @@
 
 	<!-- logout button -->
 	<div id="logout" class="btn-header transparent pull-right">
-		<span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+		<span> <a href="login.html" title="로그아웃" data-action="userLogout"><i class="fa fa-sign-out"></i></a> </span>
 	</div>
-	<!-- end logout button -->
+
+	<!-- login button -->
+	<div id="login" class="btn-header transparent pull-right">
+		<span> <a href="/login.do" title="로그인" data-action="userLogin"><i class="fa fa-smile-o"></i></a> </span>
+	</div>
 </div>
 <!-- end pulled right: nav area -->

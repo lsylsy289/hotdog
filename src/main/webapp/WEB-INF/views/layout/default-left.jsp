@@ -14,12 +14,6 @@
 				<li class="">
 					<a href="/user/register.do" title="회원가입"><i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">회원가입</span></a>
 				</li>
-				<li class="">
-					<a href="skins.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">Prebuilt Skins</span></a>
-				</li>
-				<li>
-					<a href="applayout.html"><i class="fa fa-cube"></i> App Settings</a>
-				</li>
 			</ul>
 		</li>
 		<li class="active">
