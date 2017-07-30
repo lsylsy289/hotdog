@@ -15,6 +15,12 @@
     
     <mvc:annotation-driven /><!-- @ResponseBody, @ResponseStatus, @ModelAttribute, ... 작성용 -->
     
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <value>15000000</value>
+        </property>
+    </bean>
+    
     <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
   		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
   		<property name="order" value="1" />

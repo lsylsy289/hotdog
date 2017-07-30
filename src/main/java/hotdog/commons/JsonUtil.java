@@ -9,13 +9,13 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 public class JsonUtil {
-	
-	// 생성자
+
+    // 생성자
     public JsonUtil()
     {
         // 생성자 Code
     }
-    
+
     /**
      * FuncName : JsonToMap()
      * FuncDesc : Json String -> Map 형태 변환
@@ -29,21 +29,21 @@ public class JsonUtil {
 
         return gson.fromJson(param, new HashMap<String,Object>().getClass());
     }
-    
+
     /**
      * Json -> List 변환
      * @param param
      * @return
      */
     @SuppressWarnings("unchecked")
-	public static List<Map<String, Object>> JsonToList(String param) {
-    	
-    	Gson gson = new Gson();
-    	
-    	return gson.fromJson(param, new ArrayList<Map<String, Object>>().getClass());
+    public static List<Map<String, Object>> JsonToList(String param) {
+
+        Gson gson = new Gson();
+
+        return gson.fromJson(param, new ArrayList<Map<String, Object>>().getClass());
     }
-    
-    
+
+
     /**
      * FuncName : JsonToLinkedHashMap()
      * FuncDesc : Json String -> LinkedHashMap 형태 변환(들어온 순서대로)
@@ -85,8 +85,8 @@ public class JsonUtil {
 
         return gson.toJson(sData);
     }
-    
-    
+
+
     /**
      * FuncName : HashMapToJson()
      * FuncDesc : Json String 변환
@@ -99,7 +99,7 @@ public class JsonUtil {
 
         return gson.toJson(map);
     }
-    
+
     /**
      * FuncName : MapToJson()
      * FuncDesc : Json String 변환

@@ -14,6 +14,8 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/css/smartadmin-production.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="/css/smartadmin-skins.min.css">
 
+<link href="/css/upload/uploadfile.css" rel="stylesheet" type="text/css" />
+
 <!-- SmartAdmin RTL Support -->
 <link rel="stylesheet" type="text/css" media="screen" href="/css/smartadmin-rtl.min.css"> 
 
@@ -49,7 +51,8 @@ Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Ref
 <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<Script type="text/javascript" src="/js/underscore.js"></Script>
+<script src="/js/upload/uploadfile.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/underscore.js"></script>
 
 <!-- IMPORTANT: APP CONFIG -->
 <script src="/js/app.config.js"></script>
@@ -120,4 +123,4 @@ Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Ref
 <script src="/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
 <script src="/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
 
-<title> SmartAdmin </title>
+<title> hotdog </title>

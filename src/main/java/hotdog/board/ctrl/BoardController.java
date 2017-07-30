@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,9 +46,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/board/boardEdit.do")
-	public ModelAndView getBoardEditPage() {
+	public ModelAndView getBoardEditPage(@RequestParam(required = false) String updtYn, @RequestParam(required = false) String boardSeq) {
 		
 		ModelAndView mv = new ModelAndView();
+		
+		if ( !updtYn.isEmpty() && updtYn.equals("true") ) 
+			mv.addObject("board", boardService.selectBoardDetail(boardSeq));
 		
 		mv.setViewName("board/boardEdit.tiles");
 		
@@ -61,10 +63,14 @@ public class BoardController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		boardVO.setRgstUserId(hs.getAttribute("userId").toString());
+		String userId = hs.getAttribute("userId").toString();
 		
-		boardService.saveBoard(boardVO);
+		boardVO.setRgstUserId(!userId.isEmpty() ? userId : "ADMIN");
 		
+		int resultRow = boardService.saveBoard(boardVO);
+		
+		mv.addObject("resultCode", resultRow > 0 ? "SUCCESS" : "FAIL");
+
 		mv.setViewName("board/boardEdit.tiles");
 		
 		return mv;

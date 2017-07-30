@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotdog.commons.upload.dao.UploadDao">
+
+    <select id="selectUploadList" parameterType="egovMap" resultType="egovMap">
+      SELECT
+              SEQ_NO,
+              SIGN_TRG_NO,
+              ORIGINAL_FILE_NAME,
+              F_FILE_NAME,
+              FILE_PATH,
+              IMAGE_SIZE
+        FROM  UPLOAD
+       where  1 = 1
+      <if test='signTrgNo != null'>
+         AND SIGN_TRG_NO = #{signTrgNo}
+      </if>
+      <if test='filename != null'>
+         AND ORIGINAL_FILE_NAME = #{filename}
+      </if>
+      ORDER BY
+                SEQ_NO
+   </select>
+
+    <insert id="insertUpload" parameterType="egovMap">
+        <selectKey resultType="String" keyProperty="seqNo" order="BEFORE">
+            SELECT nvl(MAX(SEQ_NO),0)+1 AS seqNo
+            FROM upload
+        </selectKey>
+        INSERT INTO upload
+        (SEQ_NO,
+        SIGN_TRG_NO,
+        ORIGINAL_FILE_NAME,
+        F_FILE_NAME,
+        FILE_PATH,
+        IMAGE_SIZE)
+        VALUES
+        (#{seqNo},
+        'hanq',
+        #{originalFileName},
+        #{fFileName},
+        #{filePath},
+        #{imageSize})
+    </insert>
+    
+    <delete id="deleteUpload" parameterType="egovMap">
+    	DELETE
+    	FROM	UPLOAD
+    	WHERE SEQ_NO = #{seqNo}
+    </delete>
+</mapper>

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,5 +57,13 @@ public class LoginController {
 			
 			return "forward:" + LOGIN_URL;
 		}
+	}
+	
+	@RequestMapping(value = "/logout.do")
+	public String logout(HttpSession hs) {
+	
+		hs.invalidate();
+
+		return "redirect:/main.do";
 	}
 }

@@ -87,7 +87,7 @@
 							</div>
 						</div>
 						<div class="pull-right" style="margin-bottom: 10px">
-							<button id="btnRgst" class="btn btn-primary" onclick="javascript:location.href = '/board/boardEdit.do'" >등록</button>
+							<button id="btnRgst" class="btn btn-primary" onclick="javascript:location.href = '/board/boardEdit.do?updtYn=false'" >등록</button>
 						</div>
 					</div>
 					<!-- end widget div -->

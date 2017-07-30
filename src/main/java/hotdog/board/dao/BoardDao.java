@@ -14,9 +14,12 @@ public interface BoardDao {
 
 	Map<String, Object> selectBoardDetail(String boardSeq);
 	
-	int saveBoard(BoardVO boardVO);
+	int insertBoard(BoardVO boardVO);
+	
+	int updateBoard(BoardVO boardVO);
 
 	void updateViewCnt(String boardSeq);
 
 	void deleteBoard(String boardSeq);
+
 }

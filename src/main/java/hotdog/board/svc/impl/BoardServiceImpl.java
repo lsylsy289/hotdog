@@ -32,7 +32,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int saveBoard(BoardVO boardVO) {
 		
-		return boardDao.saveBoard(boardVO);
+		int resultRow = boardDao.updateBoard(boardVO);
+		
+		if ( resultRow == 0 ) resultRow = boardDao.insertBoard(boardVO);
+		
+		return resultRow;
 	}
 
 	@Override

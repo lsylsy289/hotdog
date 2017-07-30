@@ -34,7 +34,7 @@
 		WHERE	A1.BOARD_SEQ	=  #{boardSeq}
 	</select>
 	
-	<insert id="saveBoard">
+	<insert id="insertBoard" parameterType="BoardVO">
 		<selectKey keyProperty="boardSeq" resultType="string" order="BEFORE">
 			SELECT COALESCE(MAX(BOARD_SEQ), '0') + 1 FROM BOARD
 		</selectKey>
@@ -55,10 +55,19 @@
 		)
 	</insert>
 	
+	<update id="updateBoard" parameterType="BoardVO">
+		UPDATE 	BOARD SET
+				TITLE			= #{title},
+				CONTENT			= #{content},
+				UPDT_DATE		= SYSDATE,
+				UPDT_USER_ID 	= #{title}
+		WHERE	BOARD_SEQ 		= #{boardSeq}
+	</update>
+	
 	<update id="updateViewCnt" parameterType="string">
 		UPDATE 	BOARD SET
-		VIEW_CNT = VIEW_CNT + 1 
-		WHERE	BOARD_SEQ = #{boardSeq}
+				VIEW_CNT 	= VIEW_CNT + 1 
+		WHERE	BOARD_SEQ 	= #{boardSeq}
 	</update>
 	
 	<update id="deleteBoard" parameterType="string">

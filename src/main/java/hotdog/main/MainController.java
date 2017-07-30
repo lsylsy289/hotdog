@@ -13,8 +13,6 @@ public class MainController {
 	@RequestMapping(value = "/main.do")
 	public String getMainPage() {
 	
-		logger.info("진입");
-		
 		return "main/main.tiles";
 	}
 }
