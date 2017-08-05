@@ -24,6 +24,7 @@
 				A1.TITLE,
 				A1.CONTENT,
 				A1.VIEW_CNT,
+				A1.FILE_ID,
 				A1.RGST_DATE,
 				COALESCE(B1.USER_NAME, '관리자')
 								AS RGST_USER_NAME
@@ -46,7 +47,7 @@
 				#{title},
 				#{content},
 				0,
-				'ATTACH_ID',
+				#{fileId},
 				SYSDATE,
 				#{rgstUserId},
 				NULL,

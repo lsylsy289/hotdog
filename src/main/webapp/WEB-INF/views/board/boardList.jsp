@@ -83,7 +83,31 @@
 										</c:choose>
 									</tbody>
 								</table>
-
+								<div class="text-center">
+									<ul class="pagination pagination-sm">
+										<li>
+											<a href="javascript:void(0);"><i class="fa fa-angle-left"></i></a>
+										</li>
+										<li class="active">
+											<a href="javascript:void(0);">1</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">2</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">3</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">4</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);">5</a>
+										</li>
+										<li>
+											<a href="javascript:void(0);"><i class="fa fa-angle-right"></i></a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 						<div class="pull-right" style="margin-bottom: 10px">
@@ -101,16 +125,16 @@
 
 <script type="text/javascript">
 
-$(document).ready(function () {
-	
-});
-
-var FormScope = {
-	
-	moveDetail: function (boardSeq) {
+	$(document).ready(function () {
 		
-		location.href = '/board/boardDetail.do?boardSeq=' + boardSeq;
-	}
-};
+	});
+	
+	var FormScope = {
+		
+		moveDetail: function (boardSeq) {
+			
+			location.href = '/board/boardDetail.do?boardSeq=' + boardSeq;
+		}
+	};
 
 </script>

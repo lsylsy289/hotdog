@@ -38,4 +38,23 @@
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:prefix="/WEB-INF/views/" p:suffix=".jsp"/>
+
+	<!-- 인터셉터 -->
+    <mvc:interceptors>
+        <!-- 캐쉬 사용 X -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*"/>
+            <bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+                <property name="cacheSeconds" value="0"/>
+            </bean>
+        </mvc:interceptor>
+        <!-- 로그인 권한 체크 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*"/>
+            <mvc:exclude-mapping path="/login.do"/>
+            <mvc:exclude-mapping path="/login/confirm.do"/>
+            <bean class="hotdog.commons.interceptor.LoginCheckInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

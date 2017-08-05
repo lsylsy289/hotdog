@@ -1,6 +1,6 @@
 package hotdog.commons.upload.ctrl;
 
-import hotdog.commons.DateUtil;
+import hotdog.commons.Base;
 import hotdog.commons.JsonUtil;
 import hotdog.commons.UploadUtil;
 import hotdog.commons.upload.svc.UploadService;
@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -22,6 +23,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -29,7 +32,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class UploadController {
 
 //    @Autowired private EgovPropertyService propertiesService;
-
+	
     @Resource(name = "uploadService")
     private UploadService uploadservice;
 
@@ -42,49 +45,45 @@ public class UploadController {
     }
 
     @RequestMapping(value="/upload/saveUpload.do", method = RequestMethod.POST)
-    public void saveUpload(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
+    public @ResponseBody String saveUpload(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
 
         MultipartFile mutipartFile = request.getFile(request.getFileNames().next());
 
-        String nasPath = "C:/files/";
-        String ddnsPath = "C:/files/";
+        String filePath = "C:/files/";
 
         String originalFileName = mutipartFile.getOriginalFilename();
 
-        String nowDate = DateUtil.getDateTime();
+        String fileId = Base.getId();
+        
+        String storedFileName = fileId + "_" + originalFileName;
 
-        String fFileName = nowDate + originalFileName;
-
-        mutipartFile.transferTo(new File(nasPath + fFileName));
+        mutipartFile.transferTo(new File(filePath + storedFileName));
 
         Map<String, Object> paramMap = new HashMap<String, Object>();
 
+        paramMap.put("fileId", fileId);
         paramMap.put("originalFileName", originalFileName);
-        paramMap.put("fFileName", fFileName);
-        paramMap.put("filePath", ddnsPath + fFileName);
-        paramMap.put("imageSize", mutipartFile.getSize());
+        paramMap.put("storedFileName", storedFileName);
+        paramMap.put("filePath", filePath + storedFileName);
+        paramMap.put("fileSize", mutipartFile.getSize());
 
         uploadservice.uploadSave(paramMap);
+        
+        return fileId;
     }
 
     @RequestMapping(value="/upload/onloadUpload.do", method = RequestMethod.POST)
-    public void onloadUpload(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public @ResponseBody Map<String, Object> onloadUpload(@RequestParam String fileId) throws Exception {
 
-        PrintWriter out = null;
-
-        response.setCharacterEncoding("UTF-8");
-
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-
-        paramMap.put("signTrgNo", request.getParameter("signTrgNo"));
-
-        HashMap<String, Object> resMap = new HashMap<String, Object>();
-
-        resMap.put("row", uploadservice.selectUploadList(paramMap));
-
-        out = response.getWriter();
-
-        out.write(JsonUtil.HashMapToJson(resMap));
+    	Map<String, Object> paramMap = new HashMap<String, Object>();
+    	
+    	paramMap.put("fileId", fileId);
+    	
+    	Map<String, Object> resultMap = new HashMap<String, Object>();
+    	
+    	resultMap.put("row", uploadservice.selectUploadList(paramMap));
+    	
+        return resultMap;
     }
 
     @RequestMapping(value = "/upload/fileDownload.do", method = RequestMethod.POST)
@@ -95,9 +94,9 @@ public class UploadController {
         String originalFileName = request.getParameter("originalFileName");
         String fFileName = request.getParameter("fFileName");
 
-        String nasPath = "C:/files/";
+        String filePath = "C:/files/";
 
-        String fullPath = nasPath + fFileName;
+        String fullPath = filePath + fFileName;
 
         File file = new File(fullPath);
 
@@ -117,8 +116,8 @@ public class UploadController {
     @RequestMapping(value = "uploadDelteTest.do", method = RequestMethod.POST)
     public void deleteTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String nasPath = "C:/files/";
-        String fFileName = request.getParameter("fFileName");
+        String filePath = "C:/files/";
+        String storedFileName = request.getParameter("storedFileName");
 
         Map<String, Object> paramMap = new HashMap<String, Object>();
         
@@ -127,7 +126,7 @@ public class UploadController {
         try {
         	uploadservice.deleteUpload(paramMap);
 			
-			File file = new File(nasPath + fFileName);
+			File file = new File(filePath + storedFileName);
 			
 			if (file.exists()) {
 				

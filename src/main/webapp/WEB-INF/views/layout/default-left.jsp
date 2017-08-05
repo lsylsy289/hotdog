@@ -2,7 +2,7 @@
 
 <!-- User info -->
 <div class="login-info">
-	<span> <!-- User image size is adjusted inside CSS, it should stay as it --> <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut"> <img src="/img/avatars/sunny.png" alt="me" class="online" /> <span> john.doe </span> <i class="fa fa-angle-down"></i> </a> </span>
+	<span><a href="javascript:void(0);" id="show-shortcut"> <img src="/img/avatars/sunny.png" alt="me" class="online" /> <span> ${session.userId} </span> <i class="fa fa-angle-down"></i> </a> </span>
 </div>
 <!-- end user info -->
 
@@ -17,7 +17,7 @@
 			</ul>
 		</li>
 		<li>
-			<a href="#"><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">커뮤니티</span></a>
+			<a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">커뮤니티</span></a>
 			<ul>
 				<li>
 					<a href="/board/boardList.do"><i class="fa fa-lg fa-fw fa-picture-o"></i>게시판</a>

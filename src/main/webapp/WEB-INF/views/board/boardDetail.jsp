@@ -65,6 +65,7 @@
 								</footer>
 								
 								<input type="hidden" id="hidBoardSeq" value="${board.boardSeq}" />
+								<input type="hidden" id="hidFileId" value="${board.fileId}" />
 							</form>
 							
 						</div>
@@ -82,99 +83,70 @@
 
 <script type="text/javascript">
 
-$(document).ready(function () {
+	$(document).ready(function () {
+		
+		FormScope.init();
+		FileUpload.init();
+	});
 	
-	FormScope.init();
-	fileUpload.init();
-});
-
-var FormScope = {
+	var FormScope = {
+			
+		listButton: $("#btnList"),
+		updtButton: $("#btnUpdt"),
+		deleteButton: $("#btnDelete"),
 		
-	deleteButton: $("#btnDelete"),
-	updtButton: $("#btnUpdt"),
-	listButton: $("#btnList"),
+		init: function () {
+			
+			this.deleteButton.click(function (e) {
+				e.preventDefault();
 	
-	init: function () {
-		
-		this.deleteButton.click(function (e) {
-			e.preventDefault();
-
-			if ( confirm("삭제하시겠습니까?") ) location.replace("/board/deleteBoard.do?boardSeq=" + $("#hidBoardSeq").val());
-		});
-		
-		this.updtButton.click(function (e) {
-			e.preventDefault();
+				if ( confirm("삭제하시겠습니까?") ) location.replace("/board/deleteBoard.do?boardSeq=" + $("#hidBoardSeq").val());
+			});
 			
-			location.href = "/board/boardEdit.do?updtYn=true&boardSeq=" + $("#hidBoardSeq").val();
-		});
-		
-		this.listButton.click(function (e) {
-			e.preventDefault();
+			this.updtButton.click(function (e) {
+				e.preventDefault();
+				
+				location.href = "/board/boardEdit.do?updtYn=true&boardSeq=" + $("#hidBoardSeq").val();
+			});
 			
-			location.href = "/board/boardList.do";
-		});
+			this.listButton.click(function (e) {
+				e.preventDefault();
+				
+				location.href = "/board/boardList.do";
+			});
+		}
 	}
-}
 
-var fileUpload = {
-		
-	init: function () {
-        window.eObj = $("#fileuploader").uploadFile( {
-
-       	showDownload: true,	
-       	
+	var FileUpload = {
+			
+		init: function () {
+	        window.eObj = $("#fileuploader").uploadFile( {
+	
+	       	showDownload: true,	
+	       	
 		    onLoad: function() {
-		        $.ajax({
-
-		           url : "/upload/onloadUpload.do",
-		           method: "post",
-		           dataType: "json",
-		           data : {"signTrgNo": "hanq"},
-		           //익스는 주소가 같고, 데이터가 동일하다면 캐쉬를 사용하여 처리한다.
-		           cache : false,
-		           success : function(data) {
-
-		              $.each(data.row, function (i, item) {
-
-		                 var originalFileName;
-		                 var filePath;
-		                 var imageSize;
-		                 var fFileName;
-		                 var seqNo;
-
-		                 $.each(item, function (k,v) {
-
-		                    if(k == "originalFileName") {
-		                       originalFileName = v;
-		                    }
-
-		                    if(k == "filePath") {
-		                       filePath = v;
-		                    }
-
-		                    if(k == "imageSize") {
-		                       imageSize = v;
-		                    }
-
-		                    if(k == "fFileName") {
-		                        fFileName = v;
-		                    }
-
-		                    if(k == "seqNo") {
-		                        seqNo = v;
-		                    }
-		                 });
-
-		                 eObj.createProgress(originalFileName, filePath, imageSize, fFileName, seqNo);
-		              });
-		              
-		              $("#fileuploader").hide();
-		           }
+		    	
+        	    $.ajax({
+		            url : "/upload/onloadUpload.do",
+		            method: "post",
+		            dataType: "json",
+		            data : { "fileId": $("#hidFileId").val() },
+		            //익스는 주소가 같고, 데이터가 동일하다면 캐쉬를 사용하여 처리한다.
+		            cache : false,
+		            success : function(data) {
+		            	
+		               $.each(data.row, function (i, v) {
+		             	  
+		                  eObj.createProgress(v.originalFileName, v.filePath, v.fileSize, v.storedFileName, v.fileSeq);
+		               });
+	            
+		               $("#fileuploader").hide();
+		            }
 		        });
 		     },
-
+	
 	      	downloadCallback: function (originalFileName, fFileName) {
-
+	
 	          	$("body").append("<form id='fmFile' name='fmFileDownload'>" +
 		                                  "<input type='hidden' id='hidOriginalFileName' name='originalFileName' />" +
 		                                  "<input type='hidden' id='hidFFileName' name='fFileName' />" +
@@ -190,14 +162,14 @@ var fileUpload = {
 		          $fileDownload.submit();
 		          $fileDownload.remove();
 		      },
-
-		      deleteCallback: function (seqNo, fFileName) {
+	
+		      deleteCallback: function (fileSeq, storedFileName) {
 		          $.post("uploadDelteTest.do", {
-		               seqNo: seqNo,
-		               fFileName: fFileName
+		               fileSeq: fileSeq,
+		               storedFileName: storedFileName
 		          });
 		      }
-		 });		
+			 });		
+		}
 	}
-}
 </script>

@@ -40,7 +40,7 @@ public class LoginController {
 			
 			if ( userInfo.get("password").equals(password) ) {
 				
-				req.getSession().setAttribute("userId", userInfo.get("userId"));
+				req.getSession().setAttribute("loginId", userInfo.get("userId"));
 				
 				logger.info("로그인성공!!!");
 				
