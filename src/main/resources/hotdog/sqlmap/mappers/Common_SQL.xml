@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common">
+	<sql id="prePagination">
+		SELECT
+			A1.*
+	    FROM(
+	</sql>
+
+	<sql id="postPagination">
+		) A1
+		WHERE
+		    A1.RNUM BETWEEN #{firstIndex} AND #{lastIndex}
+	</sql>
+</mapper>

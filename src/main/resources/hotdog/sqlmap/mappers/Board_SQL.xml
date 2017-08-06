@@ -2,25 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hotdog.board.dao.BoardDao">
 	<select id="selectBoardList" parameterType="map" resultType="egovMap">
-	    SELECT
-	        AA.*
-	    FROM(
-			SELECT /* (BoardDao.selectBoardList) */
-					ROW_NUMBER() OVER (ORDER BY A1.RGST_DATE DESC) RNUM,
-					A1.BOARD_SEQ,
-					A1.TITLE,
-					A1.VIEW_CNT,
-					A1.RGST_DATE,
-					COALESCE(B1.USER_NAME, '관리자')
-									AS RGST_USER_NAME
-			FROM	BOARD			A1
-			LEFT OUTER JOIN
-					USER_MNG		B1
-					ON  B1.USER_ID  =  A1.RGST_USER_ID
-			WHERE	A1.DELT_YN		= 'N'
-			) AA
-		WHERE
-		    AA.RNUM BETWEEN #{firstIndex} AND #{lastIndex}
+		<include refid="common.prePagination" />
+		SELECT /* (BoardDao.selectBoardList) */
+				ROW_NUMBER() OVER (ORDER BY A1.RGST_DATE DESC) RNUM,
+				A1.BOARD_SEQ,
+				A1.TITLE,
+				A1.VIEW_CNT,
+				A1.RGST_DATE,
+				COALESCE(B1.USER_NAME, '관리자')
+								AS RGST_USER_NAME
+		FROM	BOARD			A1
+		LEFT OUTER JOIN
+				USER_MNG		B1
+				ON  B1.USER_ID  =  A1.RGST_USER_ID
+		WHERE	A1.DELT_YN		= 'N'
+		<include refid="common.postPagination" />
 	</select>
 	
 	<select id="selectBoardDetail" parameterType="string" resultType="egovMap">
