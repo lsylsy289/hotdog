@@ -1,7 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<style>
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
 
 <div id="content">
 	<div class="row">
@@ -83,31 +107,40 @@
 										</c:choose>
 									</tbody>
 								</table>
-								<div class="text-center">
-									<ul class="pagination pagination-sm">
-										<li>
-											<a href="javascript:void(0);"><i class="fa fa-angle-left"></i></a>
-										</li>
-										<li class="active">
-											<a href="javascript:void(0);">1</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">2</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">3</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">4</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);">5</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);"><i class="fa fa-angle-right"></i></a>
-										</li>
-									</ul>
-								</div>
+								
+								<c:if test="${not empty paginationInfo}">
+									<div class="text-center">
+										<div class="pagination">
+							        <ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="FormScope.searchBoard"/>
+							    		</div>
+							    	</div>
+							    </c:if>
+
+<!-- 								<div class="text-center"> -->
+<!-- 									<ul class="pagination pagination-sm"> -->
+<!-- 										<li> -->
+<!-- 											<a href="javascript:void(0);"><i class="fa fa-angle-left"></i></a> -->
+<!-- 										</li> -->
+<!-- 										<li class="active"> -->
+<!-- 											<a href="javascript:void(0);">1</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="javascript:void(0);">2</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="javascript:void(0);">3</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="javascript:void(0);">4</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="javascript:void(0);">5</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="javascript:void(0);"><i class="fa fa-angle-right"></i></a> -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 								</div> -->
 							</div>
 						</div>
 						<div class="pull-right" style="margin-bottom: 10px">
@@ -131,6 +164,11 @@
 	
 	var FormScope = {
 		
+		searchBoard: function (pageNo) {
+			
+			location.href = "/board/boardList.do?pageNo="+pageNo;
+		},	
+			
 		moveDetail: function (boardSeq) {
 			
 			location.href = '/board/boardDetail.do?boardSeq=' + boardSeq;

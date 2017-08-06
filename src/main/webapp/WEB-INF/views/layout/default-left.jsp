@@ -2,7 +2,7 @@
 
 <!-- User info -->
 <div class="login-info">
-	<span><a href="javascript:void(0);" id="show-shortcut"> <img src="/img/avatars/sunny.png" alt="me" class="online" /> <span> ${session.userId} </span> <i class="fa fa-angle-down"></i> </a> </span>
+	<span><a href="javascript:void(0);" id="show-shortcut"> <span> ${loginId} </span></a> </span>
 </div>
 <!-- end user info -->
 

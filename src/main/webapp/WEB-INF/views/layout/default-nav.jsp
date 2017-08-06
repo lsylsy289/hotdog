@@ -12,7 +12,7 @@
 
 	<!-- logout button -->
 	<div id="logout" class="btn-header transparent pull-right">
-		<span> <a href="/logout.do" title="로그아웃" data-action="userLogout"><i class="fa fa-sign-out"></i></a> </span>
+		<span> <a href="#" onclick="javascript: if(confirm('로그아웃 하시겠습니까?')) location.href = '/logout.do'" title="로그아웃" data-action="userLogout"><i class="fa fa-sign-out"></i></a> </span>
 	</div>
 
 	<!-- login button -->

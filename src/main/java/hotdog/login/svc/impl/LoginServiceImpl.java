@@ -20,5 +20,4 @@ public class LoginServiceImpl implements LoginService {
 		
 		return loginDao.selectConfirm(userId);
 	}
-
 }

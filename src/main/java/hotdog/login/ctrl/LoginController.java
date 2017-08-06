@@ -40,7 +40,7 @@ public class LoginController {
 			
 			if ( userInfo.get("password").equals(password) ) {
 				
-				req.getSession().setAttribute("loginId", userInfo.get("userId"));
+				req.getSession().setAttribute("userInfo", userInfo);
 				
 				logger.info("로그인성공!!!");
 				
@@ -62,7 +62,7 @@ public class LoginController {
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession hs) {
 	
-		hs.invalidate();
+		hs.invalidate(); // 세션 소멸
 
 		return "redirect:/main.do";
 	}

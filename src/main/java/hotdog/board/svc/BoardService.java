@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface BoardService {
 
-	List<Map<String, Object>> selectBoardList();
+	List<Map<String, Object>> selectBoardList(Map<String, Object> commandMap);
 
 	Map<String, Object> selectBoardDetail(String boardSeq);
 
@@ -16,4 +16,6 @@ public interface BoardService {
 	void updateViewCnt(String boardSeq);
 
 	void deleteBoard(String boardSeq);
+
+	int selectTotalCount();
 }

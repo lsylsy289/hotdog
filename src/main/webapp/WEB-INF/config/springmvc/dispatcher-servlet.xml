@@ -56,5 +56,4 @@
             <bean class="hotdog.commons.interceptor.LoginCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
 </beans>

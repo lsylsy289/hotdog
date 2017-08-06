@@ -22,7 +22,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if( request.getSession().getAttribute("loginId") == null ) {
+        if( request.getSession().getAttribute("userInfo") == null ) {
             // log
             logger.debug("[접근권한 없음(로그인 필요)] ==> [{}]", request.getRequestURI());
 

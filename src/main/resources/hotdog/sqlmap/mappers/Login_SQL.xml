@@ -5,9 +5,11 @@
 	<select id="selectConfirm" parameterType="string" resultType="egovMap">
 		SELECT	/* sqlMapId(LoginDao.selectConfirm) */
 				A1.USER_ID,
+				A1.USER_NAME,
+				A1.EMAIL_ADDR,
+				A1.GENDER,
 				A1.PASSWD	AS PASSWORD
 		FROM	USER_MNG	A1
 		WHERE	A1.USER_ID	= #{userId}
 	</select>
-
 </mapper>

@@ -10,7 +10,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 @Mapper("boardDao")
 public interface BoardDao {
 
-	List<Map<String, Object>> selectBoardList();
+	List<Map<String, Object>> selectBoardList(Map<String, Object> commandMap);
 
 	Map<String, Object> selectBoardDetail(String boardSeq);
 	
@@ -21,5 +21,7 @@ public interface BoardDao {
 	void updateViewCnt(String boardSeq);
 
 	void deleteBoard(String boardSeq);
+
+	int selectTotalCount();
 
 }

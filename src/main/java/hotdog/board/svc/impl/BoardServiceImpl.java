@@ -18,9 +18,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao boardDao;
 	
 	@Override
-	public List<Map<String, Object>> selectBoardList() {
+	public List<Map<String, Object>> selectBoardList(Map<String, Object> commandMap) {
 		
-		return boardDao.selectBoardList();
+		return boardDao.selectBoardList(commandMap);
 	}
 
 	@Override
@@ -49,5 +49,11 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoard(String boardSeq) {
 		
 		boardDao.deleteBoard(boardSeq);
+	}
+
+	@Override
+	public int selectTotalCount() {
+
+		return boardDao.selectTotalCount();
 	}
 }
