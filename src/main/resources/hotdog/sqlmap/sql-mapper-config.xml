@@ -4,7 +4,6 @@
 <configuration>
     <typeAliases>
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
-		<typeAlias alias="userManagementVO" type="hotdog.user.ctrl.UserManagementVO"/>
-		<typeAlias alias="BoardVO" type="hotdog.board.ctrl.BoardVO"/>
+		<typeAlias alias="userVO" type="hotdog.user.vo.UserVO"/>
     </typeAliases>
 </configuration>

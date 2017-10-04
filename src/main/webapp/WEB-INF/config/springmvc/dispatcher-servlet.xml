@@ -49,11 +49,11 @@
             </bean>
         </mvc:interceptor>
         <!-- 로그인 권한 체크 -->
-        <mvc:interceptor>
-            <mvc:mapping path="/**/*"/>
-            <mvc:exclude-mapping path="/login.do"/>
-            <mvc:exclude-mapping path="/login/confirm.do"/>
-            <bean class="hotdog.commons.interceptor.LoginCheckInterceptor"/>
-        </mvc:interceptor>
+<!--         <mvc:interceptor> -->
+<!--             <mvc:mapping path="/**/*"/> -->
+<!--             <mvc:exclude-mapping path="/login.do"/> -->
+<!--             <mvc:exclude-mapping path="/login/confirm.do"/> -->
+<!--             <bean class="hotdog.commons.interceptor.LoginCheckInterceptor"/> -->
+<!--         </mvc:interceptor> -->
     </mvc:interceptors>
 </beans>

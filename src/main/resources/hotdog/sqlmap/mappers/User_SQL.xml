@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotdog.user.dao.UserDao">
+
+	<insert id="insertUser" parameterType="userVO">
+		<selectKey keyProperty="userSeq" resultType="int" order="BEFORE">
+			SELECT COALESCE(MAX(USER_SEQ), 0) + 1 FROM TB_USER
+		</selectKey>
+		INSERT INTO TB_USER
+		(
+			USER_SEQ,
+			USER_ID,
+			USER_NAME,
+			PASSWD,
+			EMAIL_ADDR,
+			GENDER,
+			POST_CODE,
+			ADDRS,
+			ADDRS_DTL,
+			PHONE_NO,
+			BIRTH_DAY,
+			RGST_DATE,
+			RGST_USER_ID,
+			UPDT_DATE,
+			UPDT_USER_ID
+		) VALUES
+		(
+			#{userSeq},
+			#{userId},
+			#{userName},
+			#{passwd},
+			#{emailAddr},
+			#{gender},
+			#{postCode},
+			#{addrs},
+			#{addrsDtl},
+			#{phoneNo},
+			#{birthDay},
+			SYSDATE,
+			'ADMIN',
+			NULL,
+			NULL
+		)
+	</insert>
+</mapper>

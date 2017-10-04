@@ -12,39 +12,41 @@
 					<div class="row">
 						<section class="col col-6">
 							<label class="input"> <i class="icon-append fa fa-user"></i>
-								<input type="text" name="userId" placeholder="사용자아이디">
+								<input type="text" id="txtUserId" name="userId" placeholder="사용자아이디">
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="input"> <i class="icon-append fa fa-user"></i>
-								<input type="text" name="userName" placeholder="사용자명">
+								<input type="text" id="txtUserName" name="userName" placeholder="사용자명">
 							</label>
 						</section>
 					</div>
 					<div class="row">
 						<section class="col col-6">
 							<div class="col-md-6">
-								<label class="input"> <i class="icon-append">@</i> <input
-									type="email" name="email1">
+								<label class="input"> <i class="icon-append">@</i> 
+									<input type="text" id="txtEmail1" name="email1">
 								</label>
 							</div>
 							<div class="col-md-4">
-								<label class="input"> <input type="email" name="email2">
+								<label class="input"> 
+									<input type="text" id="txtEmail2" name="email2">
 								</label>
 							</div>
 							<div class="col-md-2">
-								<label class="select"> <select>
-										<option>(선택)</option>
-										<option>naver.com</option>
-										<option>daum.com</option>
-										<option>직접입력</option>
-								</select> <i></i>
+								<label class="select"> 
+									<select id="sltEmailDomain">
+										<option value="">(선택)</option>
+										<option value="naver.com">naver.com</option>
+										<option value="daum.com">daum.com</option>
+										<option value="direct">직접입력</option>
+									</select> <i></i>
 								</label>
 							</div>
 						</section>
 						<section class="col col-6">
 							<label class="input"> <i class="icon-append fa fa-phone"></i>
-								<input type="tel" name="phone" placeholder="휴대폰번호"
+								<input type="tel" id="txtPhone" name="phone" placeholder="휴대폰번호"
 								data-mask="(999) 999-9999">
 							</label>
 						</section>
@@ -52,12 +54,12 @@
 					<div class="row">
 						<section class="col col-6">
 							<label class="input"> <i class="icon-append fa fa-lock"></i>
-								<input type="password" name="password" placeholder="비밀번호">
+								<input type="password" id="txtPasswd" name="passwd" placeholder="비밀번호">
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="input"> <i class="icon-append fa fa-lock"></i>
-								<input type="password" name="passwordConfirm"
+								<input type="password" id="txtPasswdConfirm" name="passwdConfirm"
 								placeholder="비밀번호 확인">
 							</label>
 						</section>
@@ -111,23 +113,45 @@
 
 $(document).ready(function () {
 
-	FormScope.init();
+	pageScope.init();
 });
 
-var FormScope = {
+var pageScope = {
 		
 	form: $("#formRegister"),
 
-	userId: $("#userId"),
-	userName: $("#userName"),
-	password: $("#txtPassword"),
-	passwordConfirm: $("#txtPasswordConfirm"),
-	emailAddr: $("#txtEmailAddr"),
+	userId: $("#txtUserId"),
+	userName: $("#txtUserName"),
+	email1: $("#txtEmail1"),
+	email2: $("#txtEmail2"),
+	emailDomain: $("#sltEmailDomain"),
+	phone: $("#txtPhone"),
+	passwd: $("#txtPasswd"),
+	passwdConfirm: $("#txtPasswdConfirm"),
 	
 	searchButton: $("#btnSearch"),
 	rgstButton: $("#btnRgst"),
 		
 	init: function () {
+		
+		this.emailDomain.change(function () {
+			
+			var emailDomain = this.emailDomain.val();
+			
+			if ( _.isEqual("direct", emailDomain) ) {
+				
+				this.email2.val("");
+			} else if ( !emailDomain ) {
+				
+				alert("도메인을 선택해주십시오.");
+				
+				this.email2.val("");
+			} else {
+				
+				this.email2.val(emailDomain);
+			}
+			
+		}.bind(this));
 		
 		this.searchButton.click(function () {
 			
@@ -148,7 +172,7 @@ var FormScope = {
 		
 		this.rgstButton.click(function () {
 
-			console.log(this.form.serialize());
+			if ( !this.validate() ) return; // 검증
 			
 			$.ajax({
 				url: '/user/registUser.do',			
@@ -161,6 +185,69 @@ var FormScope = {
 				}
 			});
 		}.bind(this));
+	},
+	
+	validate: function () {
+		
+		if ( _.isEmpty(this.userId.val()) ) {
+
+			alert("사용자아이디를 입력해주십시오.");
+			
+			this.userId.focus();
+			
+			return false;
+		} else if ( _.isEmpty(this.userName.val()) ) {
+			
+			alert("사용자명을 입력해주십시오.");
+			
+			this.userName.focus();
+			
+			return false;
+		} else if ( _.isEmpty(this.email1.val()) ) {
+			
+			alert("이메일을 입력해주십시오.");
+			
+			this.email1.focus();
+			
+			return false;
+		} else if ( _.isEmpty(this.email2.val()) ) {
+			
+			alert("이메일을 입력해주십시오.");
+			
+			this.email2.focus();
+			
+			return false;
+		} else if ( _.isEmpty(this.phone.val()) ) {
+			
+			alert("휴대폰번호를 입력해주십시오.");
+			
+			this.phone.focus();
+			
+			return false;
+		} else if ( _.isEmpty(this.passwd.val()) ) {
+			
+			alert("비밀번호를 입력해주십시오.");
+			
+			this.passwd.focus();
+			
+			return false;
+		} else if ( _.isEmpty(this.passwdConfirm.val()) ) {
+			
+			alert("비밀번호 확인을 입력해주십시오.");
+			
+			this.passwdConfirm.focus();
+			
+			return false;
+		} else if ( !_.isEqual(this.passwd.val(), this.passwdConfirm.val()) ) {
+			
+			alert("비밀번호가 일치하지 않습니다.\n다시 확인해주십시오.");
+			
+			this.passwd.focus();
+			
+			return false;
+		}
+		
+		return true;
 	}
 };
 
