@@ -3,7 +3,7 @@
 
 <div id="content" class="container">
 	<div class="row">
-	    <div class="col-md-2"></div>
+		<div class="col-md-2"></div>
 		<div class="col-md-7">
 			<div class="well no-padding">
 				<form id="login-form" name="f" class="smart-form client-form" action="/login-security.do" method="post">
@@ -20,9 +20,6 @@
 							<label class="input"> <i class="icon-append fa fa-lock"></i>
 								<input type="password" id="txtPassword" name="password">
 								<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> 비밀번호를 입력해주십시오.</b> </label>
-							<div class="note">
-								<a href="forgotpassword.html">Forgot password?</a>
-							</div>
 						</section>
 
 						<section>
@@ -31,11 +28,9 @@
 						</section>
 					</fieldset>
 					<footer>
-						<button class="btn btn-primary">
-							로그인
-						</button>
+						<button type="submit" id="btnLogin" class="btn btn-primary">로그인</button>
 					</footer>
-					
+
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form>
 				<c:if test="${not empty fail}">
@@ -57,22 +52,21 @@ $(document).ready(function () {
 });
 
 var FormScope = {
-	
+
 	loginForm: $("#login-form"),
-		
-	userId: $("#txtUserId"),	
-	password: $("#txtPassword"),	
-	
+
+	userId: $("#txtUserId"),
+	password: $("#txtPassword"),
+
 	loginButton: $("#btnLogin"),
-	
+
 	init: function () {
 
-		var _this = this;
-		
 		this.loginButton.click(function () {
-			
-			_this.loginForm.submit();
-		});
+
+			this.loginForm.submit();
+
+		}.bind(this));
 	}
 };
 </script>

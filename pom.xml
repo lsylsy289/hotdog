@@ -81,24 +81,30 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-core</artifactId>
-		    <version>4.1.0.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-		    <version>4.1.0.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-taglibs</artifactId>
-		    <version>4.1.0.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-config</artifactId>
-		    <version>4.1.0.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.4</version>
 		</dependency>
 
 		<dependency>
@@ -136,6 +142,14 @@
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr</artifactId>
 			<version>3.5</version>
+		</dependency>
+
+		<!-- 롬복 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.8</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- tiles 실행환경 -->
@@ -228,11 +242,11 @@
 
 		<!-- junit -->
 		<dependency>
-		  <groupId>junit</groupId>
-		  <artifactId>junit</artifactId>
-		  <version>4.7</version>
-		  <scope>test</scope>
-		</dependency> 
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.7</version>
+		<scope>test</scope>
+		</dependency>
 
 		<!-- jackson -->
 		<dependency>
@@ -242,6 +256,11 @@
 			<version>1.9.13</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -398,11 +417,11 @@
 				</reportSets>
 			</plugin>
 			<!-- PMD manven plugin -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
-				<version>3.1</version> <configuration> <rulesets> <ruleset>./Ruleset.xml</ruleset> 
-				</rulesets> <linkXref>true</linkXref> <sourceEncoding>${encoding}</sourceEncoding> 
-				<minimumTokens>100</minimumTokens> <targetJdk>${compileSource}</targetJdk> 
-				</configuration> <reportSets> <reportSet> <reports> <report>pmd</report> 
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId>
+				<version>3.1</version> <configuration> <rulesets> <ruleset>./Ruleset.xml</ruleset>
+				</rulesets> <linkXref>true</linkXref> <sourceEncoding>${encoding}</sourceEncoding>
+				<minimumTokens>100</minimumTokens> <targetJdk>${compileSource}</targetJdk>
+				</configuration> <reportSets> <reportSet> <reports> <report>pmd</report>
 				</reports> </reportSet> </reportSets> </plugin> -->
 			<!-- Generating JavaDoc Report -->
 			<plugin>

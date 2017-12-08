@@ -4,6 +4,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+
 <!-- #CSS Links -->
 <!-- Basic Styles -->
 <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.min.css">
@@ -15,7 +19,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/css/smartadmin-skins.min.css">
 
 <!-- SmartAdmin RTL Support -->
-<link rel="stylesheet" type="text/css" media="screen" href="/css/smartadmin-rtl.min.css"> 
+<link rel="stylesheet" type="text/css" media="screen" href="/css/smartadmin-rtl.min.css">
 
 <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 <link rel="stylesheet" type="text/css" media="screen" href="/css/demo.min.css">
@@ -43,13 +47,14 @@ Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Ref
 <link rel="apple-touch-startup-image" href="/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 <link rel="apple-touch-startup-image" href="/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
+<link rel="stylesheet" type="text/css" href="/js/jqwidgets/styles/jqx.base.css" />
+
 <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 <script data-pace-options='{ "restartOnRequestAfter": true }' src="/js/plugin/pace/pace.min.js"></script>
 
 <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="/js/upload/uploadfile.js" type="text/javascript"></script>
 <script type="text/javascript" src="/js/jquery.mask.js"></script>
 <script type="text/javascript" src="/js/underscore.js"></script>
 
@@ -57,7 +62,7 @@ Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Ref
 <script src="/js/app.config.js"></script>
 
 <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
-<script src="/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+<script src="/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
 
 <!-- BOOTSTRAP JS -->
 <script src="/js/bootstrap/bootstrap.min.js"></script>
@@ -112,14 +117,9 @@ Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Ref
 <script src="/js/smart-chat-ui/smart.chat.ui.min.js"></script>
 <script src="/js/smart-chat-ui/smart.chat.manager.min.js"></script>
 
-<script src="/js/plugin/jqgrid/jquery.jqGrid.min.js"></script>
-<script src="/js/plugin/jqgrid/grid.locale-en.min.js"></script>
 <script src="/js/plugin/jqgrid/grid.locale-kr.js"></script>
+<script src="/js/plugin/jqgrid/jquery.jqGrid.min.js"></script>
 
-<script src="/js/plugin/datatables/jquery.dataTables.min.js"></script>
-<script src="/js/plugin/datatables/dataTables.colVis.min.js"></script>
-<script src="/js/plugin/datatables/dataTables.tableTools.min.js"></script>
-<script src="/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
-<script src="/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+<script type="text/javascript" src="/js/commons/jqgridUtils.js"></script>
 
-<title> SmartAdmin </title>
+<title> hotdog </title>

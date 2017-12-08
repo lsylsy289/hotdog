@@ -3,6 +3,7 @@
         xmlns:p="http://www.springframework.org/schema/p"
         xmlns:context="http://www.springframework.org/schema/context"
         xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:security="http://www.springframework.org/schema/security"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
@@ -12,48 +13,33 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
-    
+
     <mvc:annotation-driven /><!-- @ResponseBody, @ResponseStatus, @ModelAttribute, ... 작성용 -->
-    
+
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize">
             <value>15000000</value>
         </property>
     </bean>
-    
+
     <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-  		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
-  		<property name="order" value="1" />
- 	</bean>
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+        <property name="order" value="1" />
+    </bean>
 
- 	<!-- Tiles 2 Configurer -->
- 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-  		<property name="definitions">
-   			<list>
-    			<value>/WEB-INF/tiles/default-layout.xml</value>
-   			</list>
-  		</property>
- 	</bean>
+    <!-- Tiles 2 Configurer -->
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+         <property name="definitions">
+              <list>
+               <value>/WEB-INF/tiles/default-layout.xml</value>
+              </list>
+         </property>
+    </bean>
 
-    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
-	    p:viewClass="org.springframework.web.servlet.view.JstlView"
-	    p:prefix="/WEB-INF/views/" p:suffix=".jsp"/>
-
-	<!-- 인터셉터 -->
-    <mvc:interceptors>
-        <!-- 캐쉬 사용 X -->
-        <mvc:interceptor>
-            <mvc:mapping path="/**/*"/>
-            <bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
-                <property name="cacheSeconds" value="0"/>
-            </bean>
-        </mvc:interceptor>
-        <!-- 로그인 권한 체크 -->
-<!--         <mvc:interceptor> -->
-<!--             <mvc:mapping path="/**/*"/> -->
-<!--             <mvc:exclude-mapping path="/login.do"/> -->
-<!--             <mvc:exclude-mapping path="/login/confirm.do"/> -->
-<!--             <bean class="hotdog.commons.interceptor.LoginCheckInterceptor"/> -->
-<!--         </mvc:interceptor> -->
-    </mvc:interceptors>
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+        <property name="order" value="2" />
+    </bean>
 </beans>
