@@ -11,6 +11,8 @@
 	<http auto-config="true" use-expressions="true">
 
 		<intercept-url pattern="/login.do" access="permitAll" />
+		<intercept-url pattern="/xmlpasingTest.do" access="permitAll" />
+		<intercept-url pattern="/sendEmail.do" access="permitAll" />
 		<intercept-url pattern="/login-security.do" access="permitAll" />
 		<intercept-url pattern="/user/userRegist.do" access="permitAll" />
 		<intercept-url pattern="/user/registUser.do" access="permitAll" />
@@ -33,7 +35,7 @@
 				logout-url="/logout.do"
 				logout-success-url="/login.do?logout" />
 
-		<csrf />
+		<csrf disabled="true" />
 	</http>
 
 	<authentication-manager>
