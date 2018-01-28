@@ -3,7 +3,6 @@ package hotdog.commons.login;
 import java.util.Properties;
 
 import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -73,7 +72,7 @@ public class LoginController {
 	@RequestMapping(value = "/xmlpasingTest.do")
 	public @ResponseBody String apiXmlpasing(HttpServletRequest request) {
 
-		StringBuilder sbd = new StringBuilder();
+		StringBuilder sbr = new StringBuilder();
 
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -85,8 +84,8 @@ public class LoginController {
 
 			NodeList nList = doc.getElementsByTagName("staff");
 
-			sbd.append("<?xml version=\"1.0\"?>");
-			sbd.append("<company>");
+			sbr.append("<?xml version=\"1.0\"?>");
+			sbr.append("<company>");
 
 			for (int intIndex = 0; intIndex < nList.getLength(); intIndex++) {
 
@@ -101,21 +100,21 @@ public class LoginController {
 					logger.info(getNodeValue(eElement, "nickname"));
 					logger.info(getNodeValue(eElement, "salary"));
 
-					sbd.append("<staff>");
-					sbd.append("<firstname>" + getNodeValue(eElement, "firstname") + "</firstname>");
-					sbd.append("<lastname>" + getNodeValue(eElement, "lastname") + "</lastname>");
-					sbd.append("<nickname>" + getNodeValue(eElement, "nickname") + "</nickname>");
-					sbd.append("<salary>" + getNodeValue(eElement, "salary") + "</salary>");
-					sbd.append("</staff>");
+					sbr.append("<staff>");
+					sbr.append("<firstname>" + getNodeValue(eElement, "firstname") + "</firstname>");
+					sbr.append("<lastname>" + getNodeValue(eElement, "lastname") + "</lastname>");
+					sbr.append("<nickname>" + getNodeValue(eElement, "nickname") + "</nickname>");
+					sbr.append("<salary>" + getNodeValue(eElement, "salary") + "</salary>");
+					sbr.append("</staff>");
 				}
 			}
 
-			sbd.append("</company>");
+			sbr.append("</company>");
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 
-		return sbd.toString();
+		return sbr.toString();
 	}
 
 	/**

@@ -16,10 +16,13 @@ import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 public class ApiTest {
+
+	private static final String JSON = MediaType.APPLICATION_JSON.toString();
 
 	@Test(timeout=5000)
 	public void httpClient() throws ClientProtocolException, IOException, URISyntaxException, ParseException {
@@ -54,7 +57,7 @@ public class ApiTest {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObj = (JSONObject) jsonParser.parse(json);
 
-//		System.out.println(jsonObj.get("HotSpringStatus"));
+//		System.out.println(jsonObj.get("total"));
 
 //		System.out.println(json);
 
@@ -86,6 +89,6 @@ public class ApiTest {
 
 		ResponseEntity<String> response = new RestTemplate().exchange(url, HttpMethod.GET, new HttpEntity<String>(headers), String.class);
 
-		System.out.println(response);
+//		System.out.println(response);
 	}
 }

@@ -88,6 +88,20 @@
 							<label class="input"> <input type="text" id="txtGender" placeholder="성별"></label>
 						</section>
 					</div>
+					<div class="row">
+						<section class="col col-12">
+							<div class="col-md-12">
+								<textarea id="txtContents"></textarea>
+							</div>
+						</section>
+					</div>
+					<div class="row">
+						<section class="col col-12">
+							<div class="col-md-12">
+								<div class="g-recaptcha" data-sitekey="=== Your site key ==="></div>
+							</div>
+						</section>
+					</div>
 				</fieldset>
 				<footer>
 					<button type="button" id="btnRgst" class="btn btn-primary">가입</button>
@@ -97,6 +111,12 @@
 		</div>
 	</div>
 </div>
+
+<!-- CKEditor4 -->
+<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+
+<!-- recaptcha -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <!--autoload=false 파라미터를 이용하여 자동으로 로딩되는 것을 막습니다.-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
@@ -188,6 +208,18 @@ var FormScope = {
 				});
 			}
 		}.bind(this));
+
+		CKEDITOR.replace("txtContents", {
+			width :'1140px',
+			height :'300px',
+			language:'ko',
+			uiColor: '#151278',
+			allowedContent:true,
+			toolbar :[['NewPage','Preview','Bold','Italic','Underline','Strike','-','Subscript','Superscript','-','-',
+			'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','Outdent','Indent','HorizontalRule','Link','Unlink','-',
+			'Find','Replace','SelectAll','Flash','Table','SpecialChar'],
+			'/',['Styles','Format','Font','FontSize','Undo','Redo'],['TextColor','BGColor'],['Cut','Copy','Paste','PasteText'],['Source']],
+			});
 	},
 
 	getParams: function () {
